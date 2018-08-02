@@ -1,0 +1,40 @@
+# Run JBoss CLI-Client
+$ java -jar wildfly/bin/client/jboss-cli-client.jar
+You are disconnected at the moment. Type 'connect' to connect to the server or 'help' for the list of supported commands.
+  
+# Connect to WildFly Server
+[disconnected /] connect localhost:9990
+Warning! The CLI is running in a non-modular environment and cannot load commands from management extensions.
+  
+# Switch to JMS Dead-Letter-Queue (DLQ)
+[standalone@localhost:9990 /] cd subsystem=messaging-activemq/server=default/jms-queue=DLQ
+  
+# Show all Messages in DLQ
+[standalone@localhost:9990 jms-queue=DLQ] :list-messages
+{
+    "outcome" => "success",
+    "result" => [
+        {
+            "JMSPriority" => 4,
+            "JMSType" => "notification",
+            "JMSMessageID" => "ID:196e2ba8-e4b6-11e6-b830-cf0c2e98a816",
+            "address" => "jms.queue.DLQ",
+            "JMSExpiration" => 0,
+            "__AMQ_CID" => "adc19a1a-e3c4-11e6-b830-cf0c2e98a816",
+            "_AMQ_ORIG_QUEUE" => "jms.queue.ApplicationInQueue",
+            "JMSTimestamp" => 1485538144321L,
+            "messageID" => 129422,
+            "JMSDeliveryMode" => "PERSISTENT",
+            "_AMQ_ORIG_MESSAGE_ID" => 129009,
+            "_AMQ_ORIG_ADDRESS" => "jms.queue.ApplicationInQueue"
+        }
+    ]
+}
+  
+# Remove all Messages from DLQ
+[standalone@localhost:9990 jms-queue=DLQ] :remove-messages
+{
+    "outcome" => "success",
+    "result" => 9
+}
+[standalone@localhost:9990 jms-queue=DLQ]
