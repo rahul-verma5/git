@@ -6,7 +6,7 @@
 
 	<groupId>com.amdocs.mec</groupId>
 	<artifactId>mec_integration</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<name>jBPM :: Sample Maven Project</name>
 	<description>A sample jBPM Maven project</description>
@@ -32,12 +32,16 @@
 	</repositories>
 
 	<dependencies>
+
 		<!-- https://mvnrepository.com/artifact/jboss/jboss-client -->
 		<dependency>
-			<groupId>javax.jms</groupId>
-			<artifactId>javax.jms-api</artifactId>
-			<version>2.0</version>
+			<groupId>jboss</groupId>
+			<artifactId>jboss-client</artifactId>
+			<version>4.0.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/jboss-client.jar</systemPath>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.kie</groupId>
